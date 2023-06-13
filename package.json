@@ -1,0 +1,26 @@
+{
+  "name": "21.-backend",
+  "version": "1.0.0",
+  "description": "backendfinlproject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create_migration": "sequelize-cli migration:generate --name",
+    "db:run_migration": "sequelize-cli db:migrate"
+  },
+  "author": "backend",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cli": "^1.0.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.3.4",
+    "nodejs": "^0.0.0",
+    "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "sequelize-cli": "^6.6.1"
+  }
+}
