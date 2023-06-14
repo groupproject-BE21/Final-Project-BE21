@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   Comments.init({
     id: {
       allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
     },
 
@@ -44,6 +46,8 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Comments',
+    tableName: 'comments',
+    timestamps: false
   });
   return Comments;
 };

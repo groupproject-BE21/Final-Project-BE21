@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Users.init({
-    user_id: {
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Users',
+    tableName: 'users'
   });
   return Users;
 };
