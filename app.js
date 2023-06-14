@@ -144,11 +144,64 @@ app.get('/article', async (req, res) => {
 });
 
 
+// app.delete("/article/:id", async (req, res) =>{
+//     try{
+//         const id = req.params.id;
+//         const del = await Articles.delete({
+//             where:{id}
+//         })
+        
+//     }
 
+// })
 
+app.delete('/article/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
 
-app.put("/register/:id", (req, res) =>{
-})
+        const article = await Articles.findByPk(id); // Pass the ID directly
 
-app.put("/register/:id", (req, res) =>{
-})
+        if (!article) {
+            return res.status(404).json({
+                message: "Articlenot found.",
+            });
+        }
+
+        await Articles.destroy({
+            where:{id}
+        }); // Use the forum instance to delete
+
+        res.json({
+            message: "Article deleted successfully.",
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/article/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, content } = req.body;
+
+        const article = await Articles.findByPk(id);
+
+        if (!article) {
+            return res.status(404).json({
+                message: 'Forum not found.'
+            });
+        }
+
+        article.title = title;
+        article.content = content;
+        await article.save();
+
+        res.status(200).json({
+            message: 'Forum updated successfully.', data: article
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
+    }
+});
